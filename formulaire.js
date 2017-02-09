@@ -7,7 +7,7 @@ function champ_obli(){
 	var date_naissance=document.getElementById('Date_naissance').value;
 	var telephone=document.getElementById('Telephone').value;
 	var pays=document.getElementById('Pays').value;
-	var code_postal=document.getElementById('Email').value;
+	var code_postal=document.getElementById('Code_Postal').value;
 	var ville=document.getElementById('Ville').value;
 	var adresse=document.getElementById('Adresse').value;
 	var tab=new Array(email,mot_de_passe,prenom,nom,sexe,date_naissance,telephone,pays,code_postal,ville,adresse);
@@ -28,8 +28,8 @@ function verification_email(){
 }
 
 function verification_motdepasse(){
-	var val_mdp=document.getElementById('Mdp').value;
-	var mdp=document.getElementById('Mdp');
+	var val_mdp=document.getElementById('Mot_de_passe').value;
+	var mdp=document.getElementById('Mot_de_passe');
 	var regex=/^{8,}/;
 	if(val_mdp==""){
 		error(mdp);
@@ -43,8 +43,8 @@ function verification_motdepasse(){
 }
 	
 function verification_prenom(){
-	var val_prenom = document.getElementById('Firstname').value;
-	var prenom=document.getElementById('Firstname');
+	var val_prenom = document.getElementById('Prenom').value;
+	var prenom=document.getElementById('Prenom');
 	if(val_prenom==""){
 		error(prenom);
 	}
@@ -54,8 +54,8 @@ function verification_prenom(){
 }
 	
 function verification_nom(){
-	var val_nom = document.getElementById('Name').value;
-	var nom=document.getElementById('Name');
+	var val_nom = document.getElementById('Nom').value;
+	var nom=document.getElementById('Nom');
 	if(val_nom==""){
 		error(nom);
 	}
@@ -80,8 +80,8 @@ function verification_datenaiss(){
 }
 
 function verification_telephone(){
-	var val_telephone = document.getElementById('Phone_number').value;
-	var telephone=document.getElementById('Phone_number');
+	var val_telephone = document.getElementById('Telephone').value;
+	var telephone=document.getElementById('Telephone');
 	var regex =/^[0-9.-]{10,15}/;
 	if(val_telephone==""){
 		error(telephone);
