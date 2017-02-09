@@ -1,10 +1,12 @@
-#headerwrap{
+.jumbotron{
 	background: url(banniere.jpg) no-repeat center top;
 	text-align: center;
 	background-attachment: relative;
 	background-position: center center;
-	min-width: 500px;
 	width: 100%;
+	min-height: 650px;
+	
+	
 
 	-webkit-background-size: 100%;
     -moz-background-size: 100%;
@@ -15,4 +17,16 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.jumbotron h1{
+	color:white;
+	margin-top: 260px;
+	padding-bottom: 30px;
+	font-size: 200px;
+	font-weight: bold;
+	font-family: "Bebas Neue";
+	src:url('assets/fonts/BebasNeue.otf');
+	letter-spacing: 8px;
+	text-shadow: 2px 2px 5px black;
 }
