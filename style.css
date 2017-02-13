@@ -1,3 +1,19 @@
+.navbar{
+	border-radius:0;
+}
+
+.navbar-inverse{
+	font-family:Bebas Neue;
+	font-size:18px;
+	letter-spacing:0.5px;
+	color:white;
+}
+
+.navbar-inverse a{
+	padding:2px;
+	color:white;
+}
+
 .jumbotron{
 	background: url(banniere.jpg) no-repeat center top;
 	text-align: center;
@@ -6,6 +22,8 @@
 	width: 100%;
 	min-height: 800px;
 	margin-top:-20px;
+	padding-top:25px;
+	padding-right:0px;
 	
 
 	-webkit-background-size: 100%;
@@ -17,4 +35,114 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.jumbotron .container{
+	padding-left:0px;
+	padding-right:0px;
+	margin-left:0px;
+	margin-right:0px;
+}
+
+.container{
+	width:100%;
+}
+
+/*Barre oblique*/
+#inscrip:after{
+	padding-left:30px;
+	content:"|";
+}
+
+#inscrip:hover:after{
+	color:#9d9d9d;
+}
+
+/*Barre de recherche*/
+.form-control{
+	width:200%;
+}
+
+/*Navbar transparente*/
+.navbar-transparente{
+	background-color: rgba(255,255,255,0);
+	padding:0px;
+	width:100%;
+}
+
+.navbar-transparente a{
+	color:white;
+	font-family:Bebas Neue;
+	font-size:20px;
+	letter-spacing:0.5px;
+	
+}
+
+.navbar-transparente a:hover{
+	color:#0695C4;
+	background-color:rgba(255,255,255,0);
+	
+}
+
+.navbar-transparente li a:hover{
+	background-color:rgba(255,255,255,0);
+	
+}
+
+
+/*--------------- div --------------------------------------------*/
+
+@font-face{
+	font-family: "Bebas Neue";
+	src:url('bootstrap/fonts/BebasNeue.otf');
+}
+body{
+	background-color: white;
+}
+
+#orange{
+	background-color: #fc9779;
+	margin-top: -60px;
+	width: 100%;
+}
+
+h2{
+	text-align: center;
+	font-family: "Bebas Neue";
+	color:white;
+}
+
+p{
+	color: white;
+	font-family: helvetica;
+}
+
+#blanc h2{
+	color: #262626;
+	margin-top: 50px;
+}
+
+#gris{
+	background-color: #767676;
+	height: 200px;
+}
+
+#blanc{
+	background-color: white;
+	height: 115px;
+}
+
+#blanc2{
+	background-color: white;
+	height: 80px;
+}
+
+#footer{
+	background-color: #262626;
+	text-align: center;
+	font-size: 12px;
+}
+
+#gris p{
+	text-align: center;
 }
