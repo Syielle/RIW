@@ -1,0 +1,158 @@
+.jumbotron{
+	background: url(banniere.jpg) no-repeat center top;
+	text-align: center;
+	background-attachment: relative;
+	background-position: center center;
+	width: 100%;
+	min-height: 800px;
+	margin-top:-130px;
+	
+
+	-webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+/*--------------- div --------------------------------------------*/
+
+@font-face{
+	font-family: "Bebas Neue";
+	src:url('bootstrap/fonts/BebasNeue.otf');
+}
+body{
+	background-color: white;
+}
+
+#orange{
+	background-color: #fc9779;
+	margin-top: -30px;
+	width: 100%;
+}
+
+h2{
+	text-align: center;
+	font-family: "Bebas Neue";
+	color:white;
+}
+
+p{
+	color: white;
+	font-family: helvetica;
+}
+
+#blanc h2{
+	color: #262626;
+	margin-top: 50px;
+}
+
+#gris{
+	background-color: #767676;
+	height: 200px;
+}
+
+#blanc{
+	background-color: white;
+	height: 115px;
+}
+
+#blanc2{
+	background-color: white;
+	height: 80px;
+}
+
+#footer{
+	background-color: #262626;
+	text-align: center;
+	font-size: 12px;
+}
+
+#gris p{
+	text-align: center;
+}
+
+/* --------------------- liste produit----------------------*/
+
+img{
+	width: 100px;
+}
+
+#chaussures img{
+	width: 100px;
+	margin:10px;
+}
+
+#logo{
+	margin-top: 20px;
+}
+
+h1{
+	font-family: "Bebas Neue";
+	font-size: 100px;
+	letter-spacing: 3px;
+	text-align: center;
+	padding-bottom: 40px;
+	margin-top: 10px;
+}
+
+.col-lg-10 h2{
+	color: #262626;
+}
+
+#criteres{
+	background-color: #cbcbcb;
+	padding:10px;
+	height: 500px;
+	margin-bottom: 10px;
+}
+
+#criteres p{
+	color: #262626;
+}
+
+#chaussures{
+	background-color: #cbcbcb;
+	height: 500px;
+	margin-bottom: 50px;
+}
+
+@media screen and (max-width: 1200px){
+	#chaussures{
+	background-color: #cbcbcb;
+	height: 800px;
+	margin-bottom: 50px;
+}
+}
+
+#espace{
+	margin-top: 42.25px;
+}
+
+.texte{
+	display: none;
+}
+
+a:hover span{
+	display: inline-block;
+	position: absolute;
+	white-space: nowrap;
+
+	background-color: white;
+	color:black;
+	padding:3px;
+	border:1px solid black;
+	border-radius: 5px;
+}
+
+
+/* --------------------- selection produit ----------------------*/
+
+#criteres img{
+	width: 400px;
+}	
