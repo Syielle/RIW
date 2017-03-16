@@ -1,0 +1,60 @@
+.container{
+	width:400px;
+	margin-left:15px;
+	position:relative;
+	display:inline;
+	color:black;
+}
+
+.navbar-logo{
+	width:400px;
+}
+
+.navbar-logo p{
+	padding-top:54px;
+	padding-left:140px;
+	color:black;
+}
+
+#date{
+	display:inline;
+}
+
+#titre h2{
+	color:black;
+}
+
+#formulaire{
+	
+}
+
+.form-control{
+	display:inline;
+}
+
+label{
+	left:25%;
+}
+
+.champ, .has-error, .has-success{
+	right:40%;
+	float:right;
+	width: 16.66666667%;
+}
+
+#champ{
+	left:26.7%;
+}
+
+#champ2{
+	width:100px;
+	right:60px;
+	margin:auto;
+}
+
+#inscription{
+	background-color:#ec996d;
+	border:1px solid;
+	position:absolute;
+	right:50%;
+}
