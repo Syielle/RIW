@@ -41,7 +41,7 @@
 	  </div><!-- /.container-fluid -->
 	</nav>
 	
-	<div class="container">
+<div class="container">
 		<div class="row">
 			<div class="col-lg-2 callout">
 				<div id="logo">
@@ -49,39 +49,32 @@
 				</div>
 			</div>
 			<div class="col-lg-10 callout">
-				<h2>Nom produit</h2>
-				<div id="chaussures">
-					<a href="accueil.html">Retour</a> | <a href="liste_produit.html">Marque</a> > <a href="selection_produit.html">Chaussures</a>
-					<div id="produit">
-						<div class="container">
-							<div class="row">
-								<div class="col-lg-3">
-									<h3>Catégories</h3>
-									<p>Sexe</p> 
-									<p>> Homme</p>
-									<p>> Femme </p>
-									
-									<p>taille</p>
-									<p>couleur</p>
-									
-
-
-									<h3>Description</h3>
-									<p>Description chaussure</p>
-								</div>
-								<div class="col-lg-7">
-									<img src="chaussure.jpg" alt="chaussure">
-								</div>
-							</div>
+				<h2>Profil</h2>
+				<div id="profil">
+					<a href="accueil.html">Accueil</a> > <a href="profil.php">Profil</a>
+						</br>
+					
+						
+							<h2>Civilité Nom Prénom</h2>
+							<p>Date de naissance</p>
+							<p>Adresse</p>
+							<p>Ville Pays</p>
+							<p>Code postal</p>
+							<p>Numéro de téléphone</p>
+							
+						
+		
+ 
+						
 						</div>
-					</div>
 				</div>		
 			</div>
 		</div>			
 
 	</div>
 			
-	
+
+
 
 	<div id="footer">
 		<div class="container">
