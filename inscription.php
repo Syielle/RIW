@@ -95,7 +95,7 @@
 					<div class="navbar navbar-logo">
 						<!-- Logo -->
 						<ul class="nav navbar-nav">
-							<img src="logo_noir.png" alt="Logo" width="100px" height="auto">
+							<a href="accueil.html"><img src="logo_noir.png" alt="Logo" width="100px" height="auto"></a>
 						</ul>
 						<p><a href="accueil.html">Accueil</a> > Inscription</p>
 					</div>

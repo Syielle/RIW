@@ -77,7 +77,7 @@
 		<div class="row">
 			<div class="col-lg-2 callout">
 				<div id="logo">
-					<img src="logo_noir.png" alt="logo">
+					<a href="accueil.html"><img src="logo_noir.png" alt="Logo" width="100px" height="auto"></a>
 				</div>
 			</div>
 			<div class="col-lg-10 callout">
