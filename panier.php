@@ -93,8 +93,8 @@ if (!$erreur){
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
-			<li><a href="#" id="inscrip">INSCRIPTION</a></li>
-			<li><a href="#">CONNEXION</a></li>
+			<li><a href="inscription.php" id="inscrip">INSCRIPTION</a></li>
+			<li><a href="connexion.php">CONNEXION</a></li>
 		  </ul>
 		  <!--Barre de recherche-->
 			<form class="navbar-form navbar-left">

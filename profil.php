@@ -23,8 +23,8 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
-			<li><a href="#">INSCRIPTION</a></li>
-			<li><a href="#">CONNEXION</a></li>
+			<li><a href="inscription.php">INSCRIPTION</a></li>
+			<li><a href="connexion.php">CONNEXION</a></li>
 		  </ul>
 		  <!--Barre de recherche-->
 		  <form class="navbar-form navbar-left">
@@ -55,14 +55,48 @@
 						</br>
 					
 						
-							<h2>Civilité Nom Prénom</h2>
+							<!--<h2>Civilité Nom Prénom</h2>
 							<p>Date de naissance</p>
 							<p>Adresse</p>
 							<p>Ville Pays</p>
 							<p>Code postal</p>
-							<p>Numéro de téléphone</p>
+							<p>Numéro de téléphone</p>-->
 							
-						
+							<?php
+								session_start();
+								foreach ($_SESSION['membre'] as $value){
+									foreach($value as $key=>$val){
+										/*echo $key." ".$val."<br/>";*/
+										switch($key){
+											case "civilite":
+												echo "<h2>".$val." ";
+												break;
+											case "nom":
+												echo $val." ";
+												break;
+											case "prenom":
+												echo $val."</h2>";
+												break;
+											case "date_naissance":
+												echo "<p>".$val."</p>";
+												break;
+											case "pays":
+												echo "<p>".$val." ";
+												break;
+											case "cp":
+												echo $val." ";
+												break;
+											case "ville":
+												echo $val."</p>";
+												break;
+											case "telephone":
+												echo "<p>".$val."</p>";
+												break;
+										}
+									}
+								}
+							
+							?>
 		
  
 						

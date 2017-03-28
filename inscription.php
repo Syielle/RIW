@@ -37,10 +37,8 @@
 					echo "<script type=\"text/javascript\">alert('Vous n'avez pas rempli tous les champs');</script>";
 				}
 			}
-			echo "champs validés";
 			
 			function membre($civilite,$nom,$prenom,$mdp,$verif,$email,$date,$pays,$cp,$ville,$adresse,$comp_ad,$tel){
-				echo "membre entré";
 				PDOConnexion::setParameters("wild","phpsrc","tpphp");
 				$db=PDOConnexion::getInstance();
 				$sql="INSERT INTO membre VALUES (3,:civilite, :nom, :prenom, :mdp, :email, :date, :pays, :cp, :ville, :adresse, :comp_ad, :tel, 0)";
@@ -72,7 +70,7 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
 			<li><a href="inscription.php" id="inscrip">INSCRIPTION</a></li>
-			<li><a href="#">CONNEXION</a></li>
+			<li><a href="connexion.php">CONNEXION</a></li>
 		  </ul>
 		  <!--Barre de recherche-->
 			<form class="navbar-form navbar-left">
@@ -116,10 +114,10 @@
 			  <label for="Civilite" class="col-sm-1 col-form-label">Civilité : </label>
 			    <div id="champ2">
 				  <label class="form-check-label">
-					<input class="form-check-input" type="radio" name="Civilite" id="Homme" value="Homme" checked> M.
+					<input class="form-check-input" type="radio" name="Civilite" id="M" value="M" checked> M.
 				  </label>
 				   <label class="form-check-label">
-					<input class="form-check-input" type="radio" name="Civilite" id="Femme" value="Femme"> Mme.
+					<input class="form-check-input" type="radio" name="Civilite" id="Mme" value="Mme"> Mme.
 				  </label>
 				</div>
 			</div>

@@ -23,8 +23,8 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
-			<li><a href="#">INSCRIPTION</a></li>
-			<li><a href="#">CONNEXION</a></li>
+			<li><a href="inscription.php">INSCRIPTION</a></li>
+			<li><a href="connexion.php">CONNEXION</a></li>
 		  </ul>
 		  <!--Barre de recherche-->
 		  <form class="navbar-form navbar-left">
@@ -76,47 +76,167 @@
 						<div class="row">
 					<div class="col-ms-6">
 					<h3>Catégories</h3><br/>
-					<form>
+					<form method="POST" action="">
 					<p>Sexe</p> 
-					<p onclick="tri_genre('homme')">> Homme</p>
-					<p onclick="tri_genre('femme')">> Femme </p>
+					<input type="radio" name="sexe" value="Homme">Homme</input><br/>
+					<input type="radio" name="sexe" value="Femme">Femme</input>
 					<br/>
-					<p>taille</p>
-					<p>couleur</p><select name="couleur" size="1"><option>Bleu</option>
-					<option>Jaune</option>
-					<option>Rouge</option>
+					<p name="taille" id="taille" value="taille">taille</p><select name="taille" size="1">
+					<?php
+						require_once("PDOConnexion.php");
+						function list_taille(){
+							PDOConnexion::setParameters("wild","phpsrc","tpphp");
+							$db=PDOConnexion::getInstance();
+							$sql="SELECT distinct taille FROM pointure";
+							$sth=$db->prepare($sql);
+							$sth->setFetchMode(PDO::FETCH_ASSOC);
+							$sth->execute();
+							return $sth->fetchAll();
+						}
+						
+						$sth=list_taille();
+						foreach($sth as $val){
+							foreach($val as $key=>$valeur){
+								if($key=="taille"){
+									echo "<option value=".$valeur.">".$valeur."</option>";
+								}
+							}
+						}
+					?>
+					</select>
+					<p>couleur</p><select name="couleur" size="1">
+					<?php
+						function list_couleur(){
+							PDOConnexion::setParameters("wild","phpsrc","tpphp");
+							$db=PDOConnexion::getInstance();
+							$sql="SELECT distinct couleur FROM chaussure";
+							$sth=$db->prepare($sql);
+							$sth->setFetchMode(PDO::FETCH_ASSOC);
+							$sth->execute();
+							return $sth->fetchAll();
+						}
+						
+						$sth=list_couleur();
+						foreach($sth as $val){
+							foreach($val as $key=>$valeur){
+								if($key=="couleur"){
+									echo "<option value=".$valeur.">".$valeur."</option>";
+								}
+							}
+						}
+					?>
 					</select>
 					<br/>
 					</br>
 					<p>prix</p>
-					<input type="range" min="50" max="250" value="0" step="10" oninput="document.getElementById('AfficheRange').textContent=value" />
+					<?php
+						
+						function list_prix(){
+							PDOConnexion::setParameters("wild","phpsrc","tpphp");
+							$db=PDOConnexion::getInstance();
+							$sql="SELECT min(prix), max(prix) FROM chaussure";
+							$sth=$db->prepare($sql);
+							$sth->setFetchMode(PDO::FETCH_ASSOC);
+							$sth->execute();
+							return $sth->fetchAll();
+						}
+						
+						$sth=list_prix();
+						foreach($sth as $val){
+							$i=0;
+							foreach($val as $key=>$valeur){
+								if($i==0){
+									$min=$valeur;
+								}
+								else if($i==1){
+									$max=$valeur;
+								}
+								$i++;
+							}	
+						}
+						echo "<input name='prix' type='range' min=".$min." max=".$max." value='0' step='10' oninput='document.getElementById('AfficheRange').textContent=value' />";
+					?>
 					<span id="AfficheRange">0</span>
 					</div>
 					<br>
-					<p>surface</p><select name="surface" size="1"><option></option>
-					<option></option>
-					<option></option>
+					<p>surface</p><select name="surface" size="1">
+					<?php
+						function list_surface(){
+							PDOConnexion::setParameters("wild","phpsrc","tpphp");
+							$db=PDOConnexion::getInstance();
+							$sql="SELECT * FROM surface";
+							$sth=$db->prepare($sql);
+							$sth->setFetchMode(PDO::FETCH_ASSOC);
+							$sth->execute();
+							return $sth->fetchAll();
+						}
+						
+						$sth=list_surface();
+						foreach($sth as $val){
+							foreach($val as $key=>$valeur){
+								if($key=="type"){
+									echo "<option value=".$valeur.">".$valeur."</option>";
+								}
+							}
+						}
+					?>
 					</select>
 					</br>
 					</br>
-					<p>foulées</p><select name="foulees" size="1"><option></option>
-					<option></option>
-					<option></option>
+					<p>foulées</p><select name="foulee" size="1">
+					<?php
+						
+						function list_foulee(){
+							PDOConnexion::setParameters("wild","phpsrc","tpphp");
+							$db=PDOConnexion::getInstance();
+							$sql="SELECT * FROM foulee";
+							$sth=$db->prepare($sql);
+							$sth->setFetchMode(PDO::FETCH_ASSOC);
+							$sth->execute();
+							return $sth->fetchAll();
+						}
+						
+						$sth=list_foulee();
+						foreach($sth as $val){
+							foreach($val as $key=>$valeur){
+								if($key=="type"){
+									echo "<option value=".$valeur.">".$valeur."</option>";
+								}
+							}
+						}
+					?>
 					</select>
 					</br>
 					</br>
-					
 
 					<div class="col-ms-6">
-					<h3>Marques</h3>
-					<p>Tout</p>
-					<p>Asics</p>
-					<p>Mizuno</p>
-					<p>Adidas</p>
-					<p>Nike</p>
+						<h3>Marques</h3>
+						<form>
+							<input type='radio' name="marque" value="" checked>Tout</input><br/>
+					
+							<?php
+								
+								function list_marque(){
+									PDOConnexion::setParameters("wild","phpsrc","tpphp");
+									$db=PDOConnexion::getInstance();
+									$sql="SELECT * FROM marque";
+									$sth=$db->prepare($sql);
+									$sth->setFetchMode(PDO::FETCH_ASSOC);
+									$sth->execute();
+									return $sth->fetchAll();
+								}
+								
+								$sth=list_marque();
+								foreach($sth as $val){
+									foreach($val as $key=>$valeur){
+										if($key=="nom"){
+											echo "<input type='radio' name='marque' value=".$valeur.">".$valeur."</input><br/>";
+										}
+									}
+								}
+							?>	
 					</div>
-
-					<input type="submit" name="valider" value="Valider">
+					<input type="submit" name="Valider" value="Valider">
 					</form>
 				</div>
 			</div>
@@ -124,64 +244,64 @@
 			</div>	
 			<div class="col-lg-10 callout">
 				<h2>Adidas</h2>
-				<div id="chaussures">
-					<div>
-					<figure>
-  						<img src="chaussure.jpg" alt="chaussure" />
-  						<figcaption>Marque <br> Nom chaussure <br> Prix <br></figcaption>
-					</figure>
-					</div>
-					<div>
-					<figure>
-  						<img src="chaussure.jpg" alt="chaussure" />
-  						<figcaption>Marque <br> Nom chaussure <br> Prix <br></figcaption>
-					</figure>
-					</div>
-					<div>
-					<figure>
-  						<img src="chaussure.jpg" alt="chaussure" />
-  						<figcaption>Marque <br> Nom chaussure <br> Prix <br></figcaption>
-					</figure>
-					</div>
-					<div>
-					<figure>
-  						<img src="chaussure.jpg" alt="chaussure" />
-  						<figcaption>Marque <br> Nom chaussure <br> Prix <br></figcaption>
-					</figure>
-					</div>
-					<div>
-					<figure>
-  						<img src="chaussure.jpg" alt="chaussure" />
-  						<figcaption>Marque <br> Nom chaussure <br> Prix <br></figcaption>
-					</figure>
-					</div>
-					<div>
-					<figure>
-  						<img src="chaussure.jpg" alt="chaussure" />
-  						<figcaption>Marque <br> Nom chaussure <br> Prix <br></figcaption>
-					</figure>
-					</div>
-					<div>
-					<figure>
-  						<img src="chaussure.jpg" alt="chaussure" />
-  						<figcaption>Marque <br> Nom chaussure <br> Prix <br></figcaption>
-					</figure>
-					</div>
-					<div>
-					<figure>
-  						<img src="chaussure.jpg" alt="chaussure" />
-  						<figcaption>Marque <br> Nom chaussure <br> Prix <br></figcaption>
-					</figure>
-					</div>
-					<div>
-					<figure>
-  						<img src="chaussure.jpg" alt="chaussure" />
-  						<figcaption>Marque <br> Nom chaussure <br> Prix <br></figcaption>
-					</figure>
-					</div>
-
+					<?php
+						require_once("PDOConnexion.php");
+						if(isset($_POST["Valider"])){
+							echo "";
+							$taille=$_POST['taille'];
+							$couleur=$_POST['couleur'];
+							$prix=$_POST['prix'];
+							$surface=$_POST['surface'];
+							$foulee=$_POST['foulee'];
+							$marque=$_POST['marque'];
+							
+							$sth=infos($taille, $couleur, $prix, $surface, $foulee, $marque);
+							affichage($sth);
+						}
+						
+						function infos($taille, $couleur, $prix, $surface, $foulee, $marque){
+							PDOConnexion::setParameters("wild","phpsrc","tpphp");
+							$db=PDOConnexion::getInstance();
+							$sql="SELECT url_image, nom, modele, prix FROM chaussure, marque, foulee, surface 
+									where marque.id=chaussure.marque 
+									and chaussure.foulee=foulee.id 
+									and chaussure.surface=surface.id 
+									and couleur=:couleur 
+									and prix between 0 and :prix 
+									and surface.type=:surface 
+									and foulee.type=:foulee
+									and marque.nom=:marque";
+							$sth=$db->prepare($sql);
+							$sth->setFetchMode(PDO::FETCH_ASSOC);
+							$sth->execute(array(":couleur"=>$couleur,":prix"=>$prix,":surface"=>$surface,":foulee"=>$foulee,":marque"=>$marque));
+							return $sth->fetchAll();
+						}
+						
+						function affichage($sth){
+							echo "<div id='chaussures'>";
+							foreach ($sth as $resultat){
+								foreach ($resultat as $key=>$val){
+										switch($key){
+											case "url_image":
+												echo "<div>
+														<figure>
+															<img src='".$val."' width='100px'/>";
+												break;
+											case "nom":;
+												echo "<figcaption>".$val."<br>";
+												break;
+											case "modele":
+												echo $val."<br>";
+												break;
+											case "prix":
+												echo $val."<br></figcaption></figure></div>";
+												break; 
+										}
+								}
+							}
+						}
+					?>
 				</div>
-			</div>		
 		</div>
 	</div>			
 
@@ -197,121 +317,3 @@
 </html>
 
 
-<?php
-	require_once("PDOConnexion.php");
-	
-	function affichage_genre($genre){
-		$tab=tri_genre($genre);
-		foreach ($tab as $key=>$value){
-			if($key=="marque"){
-				//a revoir comme marque = 1
-				$marque=$value;
-			}
-			elseif($key=="modele"){
-				$modele=$value;
-			}
-			elseif($key=="prix"){
-				$prix=$value;
-			}
-			elseif($key=="image"){
-				$image=$value;
-			}
-		}
-		
-		$marque=marque($marque);
-		echo $marque;
-		
-		echo "<div><a href=''><img src=".$image." alt=".$modele."></a><br/>
-					<p>".$marque."</p> <br/>
-					<p>".$modele."</p> <br/>
-					<p>".$prix."</p> <br/></div>";
-	}
-	
-	function marque($marque){
-		PDOConnexion::setParameters("wild","phpsrc","tpphp");
-		$db=PDOConnexion::getInstance();
-		$sql="SELECT nom FROM marque where id like :marque";
-		$sth=$db->prepare($sql);
-		$sth->setFetchMode(PDO::FETCH_ASSOC);
-		$sth->execute(array(":marque"=>$marque));
-		return $sth->fetch();
-	}
-	
-	function tri_genre($genre){
-		PDOConnexion::setParameters("wild","phpsrc","tpphp");
-		$db=PDOConnexion::getInstance();
-		$sql="SELECT * FROM chaussure where genre like :genre";
-		$sth=$db->prepare($sql);
-		$sth->setFetchMode(PDO::FETCH_ASSOC);
-		$sth->execute(array(":genre"=>$genre));
-		return $sth->fetchAll();
-	}
-	
-	function tri_marque($marque){
-		PDOConnexion::setParameters("wild","phpsrc","tpphp");
-		$db=PDOConnexion::getInstance();
-		$sql="SELECT * FROM chaussure, marque where marque.id=chaussure.marque and marque.nom like :marque";
-		$sth=$db->prepare($sql);
-		$sth->setFetchMode(PDO::FETCH_ASSOC);
-		$sth->execute(array(":marque"=>$marque));
-		return $sth->fetchAll();
-	}
-	
-	function tri_couleur($couleur){
-		PDOConnexion::setParameters("wild","phpsrc","tpphp");
-		$db=PDOConnexion::getInstance();
-		$sql="SELECT * FROM chaussure where couleur like :couleur";
-		$sth=$db->prepare($sql);
-		$sth->setFetchMode(PDO::FETCH_ASSOC);
-		$sth->execute(array(":couleur"=>$couleur));
-		return $sth->fetchAll();
-	}
-	
-	function tri_prix($prix){
-		PDOConnexion::setParameters("wild","phpsrc","tpphp");
-		$db=PDOConnexion::getInstance();
-		$sql="SELECT * FROM chaussure where prix like :prix";
-		$sth=$db->prepare($sql);
-		$sth->setFetchMode(PDO::FETCH_ASSOC);
-		$sth->execute(array(":prix"=>$prix));
-		return $sth->fetchAll();
-	}
-	
-	function tri_surface($surface){
-		PDOConnexion::setParameters("wild","phpsrc","tpphp");
-		$db=PDOConnexion::getInstance();
-		$sql="SELECT * FROM chaussure where surface like :surface";
-		$sth=$db->prepare($sql);
-		$sth->setFetchMode(PDO::FETCH_ASSOC);
-		$sth->execute(array(":surface"=>$surface));
-		return $sth->fetchAll();
-	}
-	
-	function tri_foulee($foulee){
-		PDOConnexion::setParameters("wild","phpsrc","tpphp");
-		$db=PDOConnexion::getInstance();
-		$sql="SELECT * FROM chaussure where foulee like :foulee";
-		$sth=$db->prepare($sql);
-		$sth->setFetchMode(PDO::FETCH_ASSOC);
-		$sth->execute(array(":foulee"=>$foulee));
-		return $sth->fetchAll();
-	}
-	
-	function tri($genre,$couleur,$prix,$surface,$foulee,$marque){
-		$tab==array(
-			'genre'=>$genre,
-			'couleur'=>$couleur,
-			'prix'=>$prix,
-			'surface'=>$surface,
-			'foulee'=>$foulee,
-			'marque'=>$marque);
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-?>

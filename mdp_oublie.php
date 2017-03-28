@@ -9,6 +9,41 @@
 	<meta charset="utf-8">
   </head>
   <body>
+	<?php
+		session_start();
+		
+		if(isset($_POST['Envoyer'])){
+			require_once("PDOConnexion.php");
+			$email=$_POST["Email"];
+			
+			if(!isset($email)&& empty($email)){
+				echo "<script type=\"text/javascript\">alert('Vous n'avez pas rempli le champs');</script>";
+			}
+			
+			/*$caractere="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";			
+			$mdp = str_shuffle($caractere);
+			$mdp = substr($mdp‚ 0‚ 10);
+			echo $mdp;*/
+			
+			/*for($i=0;$i<10;$i++){
+				$mdp+=$characts[ rand() % strlen($characts) ]; 
+			}
+			echo $mdp;*/
+			
+			//Envoi d'un mail
+			$sujet = 'Formulaire de contact ';
+			$message = "<p>Votre mot de passe provisoire :"+$mdp+"\n Veuillez le changer dès votre première connexion.";
+			$header = 'To:'.$email.'\r\n';
+			$header.='From: Formulaire de contact <formulaire@runinwild.fr> \r\n';
+			$header.='MIME-Version: 1.0'."\r\n";
+			$header.='Content-type: text/html; charset=iso-8859-1'."\r\n";		 
+			mail($email, $sujet, $message, $header);
+			echo "Bien envoyé";
+			
+			header('Location: accueil.html');
+			
+		}
+	?>
 	<nav class="navbar navbar-inverse">
 	  <div class="container-fluid">
 		<div class="navbar-header">
@@ -23,8 +58,8 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
-			<li><a href="#">INSCRIPTION</a></li>
-			<li><a href="#">CONNEXION</a></li>
+			<li><a href="inscription.php">INSCRIPTION</a></li>
+			<li><a href="connexion.php">CONNEXION</a></li>
 		  </ul>
 		  <!--Barre de recherche-->
 		  <form class="navbar-form navbar-left">
@@ -61,11 +96,12 @@
 		<div class="form-group row">
 			<label for="Email" class="col-sm-2 col-form-label">Adresse mail</label>
 			<div class="col-sm-2">
-				<input type="email" class="form-control" id="Email" onchange="verification_email()" value="<?php if(isset($_POST['Email']) || !empty($_POST['Email'])) echo $_POST['Email']?>">
+				<input type="email" class="form-control" id="Email" name="Email" onchange="verification_email()" value="<?php if(isset($_POST['Email']) || !empty($_POST['Email'])) echo $_POST['Email']?>">
 			</div>
-			<button type="submit" class="btn">Envoyer</button>
+			
 		</div>
 		</div>
+		<button type="submit" class="btn" name="Envoyer">Envoyer</button>
 		
 	</form>
  

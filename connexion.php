@@ -9,6 +9,38 @@
 	<meta charset="utf-8">
   </head>
   <body>
+	<?php
+		session_start();
+		
+		if(isset($_POST['connexion'])){
+			require_once("PDOConnexion.php");
+			$email=$_POST["Email"];
+			$mdp=$_POST["Mot_de_passe"];
+			//Vérifier les champs obligatoires
+			$tab_obli=array($mdp,$email);
+			
+			foreach($tab_obli as $obli){
+				if(!isset($obli)&& empty($obli)){
+					echo "<script type=\"text/javascript\">alert('Vous n'avez pas rempli tous les champs');</script>";
+				}
+			}
+			
+			function membre($mdp,$email){
+				PDOConnexion::setParameters("wild","phpsrc","tpphp");
+				$db=PDOConnexion::getInstance();
+				/*$sql="SELECT email from membre where email=:email and mdp=:mdp;";*/
+				$sql="SELECT * from membre where email=:email and mdp=:mdp;";
+				$sth=$db->prepare($sql);
+				$sth->setFetchMode(PDO::FETCH_ASSOC);
+				$sth->execute(array(":email"=>$email,":mdp"=>$mdp));
+				//return $sth->fetch();
+				return $sth->fetchAll();
+			}
+			$_SESSION['membre']=membre($mdp,$email);
+			header('Location: profil.php');
+			
+		}
+	?>
 	<nav class="navbar navbar-inverse">
 	  <div class="container-fluid">
 		<div class="navbar-header">
@@ -23,8 +55,8 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
-			<li><a href="#">INSCRIPTION</a></li>
-			<li><a href="#">CONNEXION</a></li>
+			<li><a href="inscription.php">INSCRIPTION</a></li>
+			<li><a href="connexion.php">CONNEXION</a></li>
 		  </ul>
 		  <!--Barre de recherche-->
 		  <form class="navbar-form navbar-left">
@@ -59,9 +91,9 @@
 							<form  action="" method="POST" onsubmit="return champ_obli()" id="formulaire">
 
 		<div class="form-group row">
-			<label for="Email" class="col-sm-2 col-form-label">Adresse mail</label>
+			<label for="Email" class="col-sm-2 col-form-label" name="Email">Adresse mail</label>
 			<div class="col-sm-2">
-				<input type="email" class="form-control" id="Email" onchange="verification_email()" value="<?php if(isset($_POST['Email']) || !empty($_POST['Email'])) echo $_POST['Email']?>">
+				<input type="email" class="form-control" id="Email"  name="Email" onchange="verification_email()" value="<?php if(isset($_POST['Email']) || !empty($_POST['Email'])) echo $_POST['Email']?>">
 			</div>
 
 		</div>
@@ -69,13 +101,16 @@
 		<div class="form-group row">
 		<label for="Email" class="col-sm-2 col-form-label">Mot de passe</label>
 			<div class="col-sm-2">
-				<input type="mot_de_passe" class="form-control" id="mot_de_passe" onchange="verification_motdepasse()" value="<?php if(isset($_POST['Email']) || !empty($_POST['Email'])) echo $_POST['Email']?>">
+				<input type="mot_de_passe" class="form-control"  name="Mot_de_passe" id="mot_de_passe" onchange="verification_motdepasse()" value="<?php if(isset($_POST['Email']) || !empty($_POST['Email'])) echo $_POST['Email']?>">
 			</div>
 		</div>
-	</div>
-		<button type="submit" class="btn">Envoyer</button>
+		<a href="mdp_oublie.php" style="text-align:right;">Mot de passe oublié ?</a>
+		<br/>
+		<br/>
+		<button type="submit" class="btn" name="connexion">Envoyer</button>
 		
 	</form>
+
  
   <script type="text/javascript">
 	function champ_obli(){
@@ -97,21 +132,19 @@
 	}
 
 	function verification_motdepasse(){
-	var val_mdp=document.getElementById('Mot_de_passe').value;
-	var mdp=document.getElementById('Mot_de_passe');
-	var regex=/^{8,}/;
-	if(val_mdp==""){
-		error(mdp);
+		var val_mdp=document.getElementById('Mot_de_passe').value;
+		var mdp=document.getElementById('Mot_de_passe');
+		var regex=/^{8,}/;
+		if(val_mdp==""){
+			error(mdp);
+		}
+		else if(!regex.test(val_mdp)){
+			error(mdp);
+		}
+		else{
+			valid(mdp);
+		}
 	}
-	else if(!regex.test(val_mdp)){
-		error(mdp);
-	}
-	else{
-		valid(mdp);
-	}
-}
-
-
 	
 	function valid(element){
 		element.setAttribute("class","form-control form-control-success");

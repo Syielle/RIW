@@ -127,7 +127,7 @@ p{
 
 #gris{
 	background-color: #cbcbcb;
-	height: 200px;
+/*	height: 200px;*/
 }
 
 #blanc{
@@ -181,7 +181,7 @@ h1{
 #criteres{
 	background-color: #cbcbcb;
 	padding:10px;
-	height: 760px;
+/*	height: 760px;*/
 	margin-bottom: 10px;
 }
 
@@ -191,15 +191,15 @@ h1{
 
 #chaussures{
 	background-color: #cbcbcb;
-	height: 760px;
+/*	height: 760px;*/
 	margin-bottom: 50px;
-	overflow:scroll;
+/*	overflow:scroll;*/
 }
 
 @media screen and (max-width: 1200px){
 	#chaussures{
 	background-color: #cbcbcb;
-	height: 800px;
+/*	height: 800px;*/
 	margin-bottom: 50px;
 }
 }
@@ -226,7 +226,7 @@ h1{
 
 #chaussures div{
 	display: inline-block;
-	height: 100px;
+	/*height: 100px;*/
 }
 
 #chaussures p{
@@ -292,7 +292,7 @@ input[type="range"] {
 
 #profil{
 	background-color: #cbcbcb;
-	height: 300px;
+/*	height: 300px;*/
 	margin-bottom: 50px;
 	padding: 20px; 
 }
@@ -316,5 +316,28 @@ input[type="range"] {
 	height: 100px;
 	padding:5px;
 	margin-left: 1px;
+}
+
+
+
+/*--------------------------- bugs ---------------------------------------------*/
+
+.form-control {
+	max-width: 300px;
+}
+
+
+/*--------------------------- admin ---------------------------------------------*/
+
+.admin {
+	background-color: #cbcbcb;
+/*	height: 650px;*/
+	padding:20px;
+}
+
+#boutons{
+	background-color: #cbcbcb;
+/*	height: 650px;*/
+	padding:20px;
 }
 
