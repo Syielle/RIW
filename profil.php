@@ -35,81 +35,61 @@
 		  </form>
 		  <!--Panier-->
 		  <ul class="nav navbar-nav navbar-right">
-			<li><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>  PANIER</a></li>
+			<li><a href="panier.php"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>  PANIER</a></li>
 		  </ul>
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
 	
-<div class="container">
+	<div class="container">
 		<div class="row">
 			<div class="col-lg-2 callout">
 				<div id="logo">
-					<a href="accueil.html"><img src="logo_noir.png" alt="Logo" width="100px" height="auto"></a>
+					<a href="accueil.php"><img src="logo_noir.png" alt="Logo" width="100px" height="auto"></a>
 				</div>
 			</div>
 			<div class="col-lg-10 callout">
 				<h2>Profil</h2>
 				<div id="profil">
-					<a href="accueil.html">Accueil</a> > <a href="profil.php">Profil</a>
-						</br>
-					
-						
-							<!--<h2>Civilité Nom Prénom</h2>
-							<p>Date de naissance</p>
-							<p>Adresse</p>
-							<p>Ville Pays</p>
-							<p>Code postal</p>
-							<p>Numéro de téléphone</p>-->
+					<a href="accueil.php">Accueil</a> > <a href="profil.php">Profil</a>
+					</br>
 							
-							<?php
-								session_start();
-								foreach ($_SESSION['membre'] as $value){
-									foreach($value as $key=>$val){
-										/*echo $key." ".$val."<br/>";*/
-										switch($key){
-											case "civilite":
-												echo "<h2>".$val." ";
-												break;
-											case "nom":
-												echo $val." ";
-												break;
-											case "prenom":
-												echo $val."</h2>";
-												break;
-											case "date_naissance":
-												echo "<p>".$val."</p>";
-												break;
-											case "pays":
-												echo "<p>".$val." ";
-												break;
-											case "cp":
-												echo $val." ";
-												break;
-											case "ville":
-												echo $val."</p>";
-												break;
-											case "telephone":
-												echo "<p>".$val."</p>";
-												break;
-										}
-									}
+					<?php
+						session_start();
+						foreach ($_SESSION['membre'] as $value){
+							foreach($value as $key=>$val){
+								switch($key){
+									case "civilite":
+										echo "<h2>".$val." ";
+										break;
+									case "nom":
+										echo $val." ";
+										break;
+									case "prenom":
+										echo $val."</h2>";
+										break;
+									case "date_naissance":
+										echo "<p>".$val."</p>";
+										break;
+									case "cp":
+										echo "<p>".$val." ";
+										break;
+									case "ville":
+										echo $val."</p>";
+										break;
+									case "telephone":
+										echo "<p>".$val."</p>";
+										break;
 								}
+							}
+						}
 							
-							?>
-		
- 
-						
-						</div>
-				</div>		
-			</div>
-		</div>			
-
+					?>
+				</div>
+			</div>		
+		</div>
 	</div>
-			
-
-
-
+	
 	<div id="footer">
 		<div class="container">
 			<p>Created by Yordles</p>

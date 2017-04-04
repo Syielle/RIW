@@ -22,11 +22,7 @@
 	background-position: center center;
 	width: 100%;
 	min-height: 800px;
-	/*margin-top:-20px;*/
 	margin-top:-130px;
-	
-	/*padding-top:25px;
-	padding-right:0px;*/
 	
 
 	-webkit-background-size: 100%;
@@ -40,16 +36,6 @@
     background-size: cover;
 }
 
-/*.jumbotron .container{
-	padding-left:0px;
-	padding-right:0px;
-	margin-left:0px;
-	margin-right:0px;
-}
-
-.container{
-	width:100%;
-}*/
 
 /*Barre oblique*/
 #inscrip:after{

@@ -25,20 +25,35 @@
 				}
 			}
 			
-			function membre($mdp,$email){
-				PDOConnexion::setParameters("wild","phpsrc","tpphp");
-				$db=PDOConnexion::getInstance();
-				/*$sql="SELECT email from membre where email=:email and mdp=:mdp;";*/
-				$sql="SELECT * from membre where email=:email and mdp=:mdp;";
-				$sth=$db->prepare($sql);
-				$sth->setFetchMode(PDO::FETCH_ASSOC);
-				$sth->execute(array(":email"=>$email,":mdp"=>$mdp));
-				//return $sth->fetch();
-				return $sth->fetchAll();
-			}
 			$_SESSION['membre']=membre($mdp,$email);
-			header('Location: profil.php');
+			/*if($_SESSION['membre']['admin']==0){
+				header('Location: profil.php');
+			}*/
+			header('Location: admin.php');
 			
+			foreach ($_SESSION['membre'] as $resultat){
+				foreach ($resultat as $key=>$val){
+					if($key=="admin"){
+						if($val==1){
+							header('Location: admin.php');
+						}
+						else{
+							header('Location: profil.php');
+						}
+					}
+				}
+				return ;
+			}
+		}
+		
+		function membre($mdp,$email){
+			PDOConnexion::setParameters("wild","phpsrc","tpphp");
+			$db=PDOConnexion::getInstance();
+			$sql="SELECT * from membre where email=:email and mdp=:mdp;";
+			$sth=$db->prepare($sql);
+			$sth->setFetchMode(PDO::FETCH_ASSOC);
+			$sth->execute(array(":email"=>$email,":mdp"=>$mdp));
+			return $sth->fetchAll();
 		}
 	?>
 	<nav class="navbar navbar-inverse">
@@ -61,57 +76,70 @@
 		  <!--Barre de recherche-->
 		  <form class="navbar-form navbar-left">
 			<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-				<div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+				<div class="input-group-addon">
+					<span class="glyphicon glyphicon-search"></span>
+				</div>
 				<input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Rechercher">
 			</div>
 		  </form>
 		  <!--Panier-->
 		  <ul class="nav navbar-nav navbar-right">
-			<li><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>  PANIER</a></li>
+			<li><a href="panier.php"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>  PANIER</a></li>
 		  </ul>
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
 	
-<div class="container">
+	<div class="container">
 		<div class="row">
 			<div class="col-lg-2 callout">
 				<div id="logo">
-					<a href="accueil.html"><img src="logo_noir.png" alt="Logo" width="100px" height="auto"></a>
+					<a href="accueil.php"><img src="logo_noir.png" alt="Logo" width="100px" height="auto"></a>
 				</div>
 			</div>
 			<div class="col-lg-10 callout">
 				<h2>Connexion</h2>
 				<div id="connexion">
-					<a href="accueil.html">Accueil</a> > <a href="connexion.php">Connexion</a>
-						</br>
+					<a href="accueil.php">Accueil</a> > <a href="connexion.php">Connexion</a>
 					</br>
-						<div id="desinscription">
+					</br>
+					<div id="desinscription">
+						<form  action="" method="POST" onsubmit="return champ_obli()" id="formulaire">
 
-							<form  action="" method="POST" onsubmit="return champ_obli()" id="formulaire">
+							<div class="form-group row">
+								<label for="Email" class="col-sm-2 col-form-label" name="Email">Adresse mail</label>
+								<div class="col-sm-2">
+									<input type="email" class="form-control" id="Email"  name="Email" onchange="verification_email()" value="<?php if(isset($_POST['Email']) || !empty($_POST['Email'])) echo $_POST['Email']?>">
+								</div>
 
-		<div class="form-group row">
-			<label for="Email" class="col-sm-2 col-form-label" name="Email">Adresse mail</label>
-			<div class="col-sm-2">
-				<input type="email" class="form-control" id="Email"  name="Email" onchange="verification_email()" value="<?php if(isset($_POST['Email']) || !empty($_POST['Email'])) echo $_POST['Email']?>">
+							</div>
+
+							<div class="form-group row">
+								<label for="Email" class="col-sm-2 col-form-label">Mot de passe</label>
+								<div class="col-sm-2">
+									<input type="password" class="form-control"  name="Mot_de_passe" id="mot_de_passe" onchange="verification_motdepasse()" value="<?php if(isset($_POST['Email']) || !empty($_POST['Email'])) echo $_POST['Email']?>">
+								</div>
+							</div>
+							<a href="mdp_oublie.php" style="text-align:right;">Mot de passe oublié ?</a>
+							<br/>
+							<br/>
+							<button type="submit" class="btn" name="connexion">Envoyer</button>
+						</form>
+					</div>
+				</div>		
 			</div>
-
 		</div>
+	</div>
 
-		<div class="form-group row">
-		<label for="Email" class="col-sm-2 col-form-label">Mot de passe</label>
-			<div class="col-sm-2">
-				<input type="mot_de_passe" class="form-control"  name="Mot_de_passe" id="mot_de_passe" onchange="verification_motdepasse()" value="<?php if(isset($_POST['Email']) || !empty($_POST['Email'])) echo $_POST['Email']?>">
-			</div>
+	<div id="footer">
+		<div class="container">
+			<p>Created by Yordles</p>
 		</div>
-		<a href="mdp_oublie.php" style="text-align:right;">Mot de passe oublié ?</a>
-		<br/>
-		<br/>
-		<button type="submit" class="btn" name="connexion">Envoyer</button>
-		
-	</form>
+	</div>			
 
- 
+  </body>
+  <script src="jquery/dist/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
   <script type="text/javascript">
 	function champ_obli(){
 		var email=document.getElementById('Email').value;
@@ -159,24 +187,4 @@
 	}
 	
   </script>
-						
-						</div>
-				</div>		
-			</div>
-		</div>			
-
-	</div>
-			
-
-
-
-	<div id="footer">
-		<div class="container">
-			<p>Created by Yordles</p>
-		</div>
-	</div>			
-
-  </body>
-  <script src="jquery/dist/jquery.min.js"></script>
-  <script src="bootstrap/js/bootstrap.min.js"></script>
 </html>

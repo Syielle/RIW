@@ -198,7 +198,7 @@
 		  </form>
 		  <!--Panier-->
 		  <ul class="nav navbar-nav navbar-right">
-			<li><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>  PANIER</a></li>
+			<li><a href="panier.php"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>  PANIER</a></li>
 		  </ul>
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
@@ -240,111 +240,109 @@
 				</div>
 			</div>
 			<div class="col-lg-10">
-<div id="ajouter" class="admin masquer" style="display:none">
+				<div id="ajouter" class="admin masquer" style="display:none">
 					<h3>Ajouter un produit</h3>
 					<br/>
 					<form  action="admin.php" method="POST" onsubmit="return champ_obli()" id="formulaire">
-					
-
-					<div class="form-group row">
-						<label for="nom" class="col-sm-2 col-form-label">Nom : </label>
-						<div class="col-sm-2 champ">
-							<input type="text" class="form-control" id="nom" name="nom" required>
+						<div class="form-group row">
+							<label for="nom" class="col-sm-2 col-form-label">Nom : </label>
+							<div class="col-sm-2 champ">
+								<input type="text" class="form-control" id="nom" name="nom" required>
+							</div>
 						</div>
-					</div>
 
-					<div class="form-group row">
-						<label for="marque" class="col-sm-2 col-form-label">Marque : </label>
-						<div class="col-sm-2 champ">
-							<select class="form-control" id="marque" name="marque" required>
-								<?php
-			                        $sth=list_marque();
-			                        foreach($sth as $val){
-			                            echo "<option value='" . $val['id'] . "'>" . $val['nom'] . "</option>";
-			                        }
-			                    ?>
-							</select>
+						<div class="form-group row">
+							<label for="marque" class="col-sm-2 col-form-label">Marque : </label>
+							<div class="col-sm-2 champ">
+								<select class="form-control" id="marque" name="marque" required>
+									<?php
+										$sth=list_marque();
+										foreach($sth as $val){
+											echo "<option value='" . $val['id'] . "'>" . $val['nom'] . "</option>";
+										}
+									?>
+								</select>
+							</div>
 						</div>
-					</div>
 
-					<div class="form-group row">
-						<label for="prix" class="col-sm-2 col-form-label">Prix : </label>
-						<div class="col-sm-2 champ">
-							<input type="number" class="form-control" id="prix" name="prix" required>
+						<div class="form-group row">
+							<label for="prix" class="col-sm-2 col-form-label">Prix : </label>
+							<div class="col-sm-2 champ">
+								<input type="number" class="form-control" id="prix" name="prix" required>
+							</div>
 						</div>
-					</div>
 
-					<div class="form-group row">
-						<label for="poids" class="col-sm-2 col-form-label">Poids : </label>
-						<div class="col-sm-2 champ">
-							<input type="number" class="form-control" id="poids" name="poids" required>
+						<div class="form-group row">
+							<label for="poids" class="col-sm-2 col-form-label">Poids : </label>
+							<div class="col-sm-2 champ">
+								<input type="number" class="form-control" id="poids" name="poids" required>
+							</div>
 						</div>
-					</div>
 
-					<div class="form-group row">
-						<label for="sexe" class="col-sm-2 col-form-label">Genre : </label>
-						<div class="col-sm-2 champ">
-							<select class="form-control" id="genre" name="genre" required>
-								<option value="Homme">Homme</option>
-								<option value="Femme">Femme</option>
-							</select>	
+						<div class="form-group row">
+							<label for="sexe" class="col-sm-2 col-form-label">Genre : </label>
+							<div class="col-sm-2 champ">
+								<select class="form-control" id="genre" name="genre" required>
+									<option value="Homme">Homme</option>
+									<option value="Femme">Femme</option>
+								</select>	
+							</div>
 						</div>
-					</div>
 
-					<div class="form-group row">
-						<label for="surface" class="col-sm-2 col-form-label">Surface : </label>
-						<div class="col-sm-2 champ">
-							<select class="form-control" id="surface" name="surface" required>
-								<?php
-			                        $sth=list_surface();
-			                        foreach($sth as $val){
-			                            echo "<option value='" . $val['id'] . "'>" . $val['type'] . "</option>";
-			                        }
-			                    ?>
-							</select>
+						<div class="form-group row">
+							<label for="surface" class="col-sm-2 col-form-label">Surface : </label>
+							<div class="col-sm-2 champ">
+								<select class="form-control" id="surface" name="surface" required>
+									<?php
+										$sth=list_surface();
+										foreach($sth as $val){
+											echo "<option value='" . $val['id'] . "'>" . $val['type'] . "</option>";
+										}
+									?>
+								</select>
+							</div>
 						</div>
-					</div>
 
-					<div class="form-group row">
-						<label for="couleur" class="col-sm-2 col-form-label">Couleur : </label>
-						<div class="col-sm-2 champ">
-							<input type="text" class="form-control" id="couleur" name="couleur" required>
+						<div class="form-group row">
+							<label for="couleur" class="col-sm-2 col-form-label">Couleur : </label>
+							<div class="col-sm-2 champ">
+								<input type="text" class="form-control" id="couleur" name="couleur" required>
+							</div>
 						</div>
-					</div>
 
-					<div class="form-group row">
-						<label for="foulees" class="col-sm-2 col-form-label">Foulées : </label>
-						<div class="col-sm-2 champ">
-							<select class="form-control" id="foulee" name="foulee" required>
-								<?php
-			                        $sth=list_foulee();
-			                        foreach($sth as $val){
-			                            echo "<option value='" . $val['id'] . "'>" . $val['type'] . "</option>";
-			                        }
-			                    ?>
-							</select>
+						<div class="form-group row">
+							<label for="foulees" class="col-sm-2 col-form-label">Foulées : </label>
+							<div class="col-sm-2 champ">
+								<select class="form-control" id="foulee" name="foulee" required>
+									<?php
+										$sth=list_foulee();
+										foreach($sth as $val){
+											echo "<option value='" . $val['id'] . "'>" . $val['type'] . "</option>";
+										}
+									?>
+								</select>
+							</div>
 						</div>
-					</div>
 
-					<div class="form-group row">
-						<label for="photo" class="col-sm-2 col-form-label">Photos : </label>
-						<div class="col-sm-2 champ">
-							<input type="text" class="form-control" id="photo" name="url_image" required>
+						<div class="form-group row">
+							<label for="photo" class="col-sm-2 col-form-label">Photos : </label>
+							<div class="col-sm-2 champ">
+								<input type="text" class="form-control" id="photo" name="url_image" required>
+							</div>
 						</div>
-					</div>
 
-					<div class="form-group row">
-						<label for="description" class="col-sm-2 col-form-label">Description : </label>
-						<div class="col-sm-2 champ">
-							<input type="text" class="form-control" id="description" name="description" required>
+						<div class="form-group row">
+							<label for="description" class="col-sm-2 col-form-label">Description : </label>
+							<div class="col-sm-2 champ">
+								<input type="text" class="form-control" id="description" name="description" required>
+							</div>
 						</div>
-					</div>
-					
-					<button type="submit" class="btn" id="valider" name="Ajouter_Chaussure">Valider</button>
+						
+						<button type="submit" class="btn" id="valider" name="Ajouter_Chaussure">Valider</button>
 					</form>
 				</div>
 
-<div id="supprimer" class="admin masquer" style="display:none">
+				<div id="supprimer" class="admin masquer" style="display:none">
 					<h3>Supprimer un produit</h3>
 					<br/>
 					<div class="row">
@@ -356,20 +354,18 @@
 		                </div>
 		            </div>
 				</div>
-<?php
-	if(isset($_POST["Modification_Chaussure"])){
-		echo "<div id='modification' class='admin'>";
-		$id = $_POST['id'];
-		$chaussure = chaussure($id);
-	} else {
-		echo "<div id='modification' class='admin' style='display:none'>";
-	}
-?>
-					<h3>Modifier un produit</h3>
-					<br/>
-					<form  action="admin.php" method="POST" onsubmit="return champ_obli()" id="formulaire">
-					
-
+				<?php
+					if(isset($_POST["Modification_Chaussure"])){
+						echo "<div id='modification' class='admin'>";
+						$id = $_POST['id'];
+						$chaussure = chaussure($id);
+					} else {
+						echo "<div id='modification' class='admin' style='display:none'>";
+					}
+				?>
+				<h3>Modifier un produit</h3>
+				<br/>
+				<form  action="admin.php" method="POST" onsubmit="return champ_obli()" id="formulaire">
 					<div class="form-group row">
 						<label for="nom" class="col-sm-2 col-form-label">Nom : </label>
 						<div class="col-sm-2 champ">
@@ -478,28 +474,107 @@
 					</div>
 					<input type="text" style="display:none" name="id" value="<?php echo $id; ?>"/>
 					<button type="submit" class="btn" id="valider" name="Modifier_Chaussure">Valider</button>
-					</form>
-				</div>
+				</form>
+			</div>
 
 
-<div id="modifier" class="admin masquer" style="display:none">
-					<h3>Modifier un produit</h3>
-					<br/>
-					<div class="row">
-						<div class="col-lg-12 callout" id="liste">
-							<?php
-								$sth=list_chaussure();
-					           	affichage_modifier($sth);
-		                    ?>
-		                </div>
+			<div id="modifier" class="admin masquer" style="display:none">
+				<h3>Modifier un produit</h3>
+				<br/>
+				<div class="row">
+					<div class="col-lg-12 callout" id="liste">
+						<?php
+							$sth=list_chaussure();
+				           	affichage_modifier($sth);
+		                ?>
 		            </div>
-				</div>
+		        </div>
+			</div>
 
 
-<div id="ajouterP" class="admin masquer" style="display:none">
-					<h3>Ajouter une promotion</h3>
-					<br/>
-					<form  action="" method="POST" onsubmit="return champ_obli()" id="formulaire">
+			<div id="ajouterP" class="admin masquer" style="display:none">
+				<h3>Ajouter une promotion</h3>
+				<br/>
+				<form  action="" method="POST" onsubmit="return champ_obli()" id="formulaire">
+					<div class="form-group row">
+						<label for="num_produit" class="col-sm-2 col-form-label">Numéro : </label>
+						<div class="col-sm-2 champ">
+							<input type="text" class="form-control" id="num_produit" name="Num">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="nom" class="col-sm-2 col-form-label">Nom : </label>
+						<div class="col-sm-2 champ">
+							<input type="text" class="form-control" id="nom" name="nom">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="marque" class="col-sm-2 col-form-label">Marque : </label>
+						<div class="col-sm-2 champ">
+							<input type="text" class="form-control" id="marque" name="marque">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="prix" class="col-sm-2 col-form-label">Prix : </label>
+						<div class="col-sm-2 champ">
+							<input type="text" class="form-control" id="prix" name="prix">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="sexe" class="col-sm-2 col-form-label">Sexe : </label>
+						<div class="col-sm-2 champ">
+							<input type="text" class="form-control" id="sexe" name="sexe">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="surface" class="col-sm-2 col-form-label">Surface : </label>
+						<div class="col-sm-2 champ">
+							<input type="text" class="form-control" id="surface" name="surface">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="couleur" class="col-sm-2 col-form-label">Couleur : </label>
+						<div class="col-sm-2 champ">
+							<input type="text" class="form-control" id="couleur" name="couleur">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="foulees" class="col-sm-2 col-form-label">Foulées : </label>
+						<div class="col-sm-2 champ">
+							<input type="text" class="form-control" id="foulees" name="foulees">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="photo" class="col-sm-2 col-form-label">Photos : </label>
+						<div class="col-sm-2 champ">
+							<input type="text" class="form-control" id="photo" name="photo">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="description" class="col-sm-2 col-form-label">Description : </label>
+						<div class="col-sm-2 champ">
+							<input type="text" class="form-control" id="description" name="description">
+						</div>
+					</div>
+					
+					<button type="submit" class="btn" id="valider" name="inscription">Valider</button>
+				</form>
+			</div>
+
+
+			<div id="supprimerP" class="admin masquer" style="display:none">
+				<h3>Supprimer une promotion</h3>
+				<br/>
+				<form  action="" method="POST" onsubmit="return champ_obli()" id="formulaire">
 					
 					<div class="form-group row">
 						<label for="num_produit" class="col-sm-2 col-form-label">Numéro : </label>
@@ -572,14 +647,14 @@
 					</div>
 					
 					<button type="submit" class="btn" id="valider" name="inscription">Valider</button>
-					</form>
-				</div>
+				</form>
+			</div>
 
 
-<div id="supprimerP" class="admin masquer" style="display:none">
-					<h3>Supprimer une promotion</h3>
-					<br/>
-					<form  action="" method="POST" onsubmit="return champ_obli()" id="formulaire">
+			<div id="modifierP" class="admin masquer" style="display:none">
+				<h3>Modifier une promotion</h3>
+				<br/>
+				<form  action="" method="POST" onsubmit="return champ_obli()" id="formulaire">
 					
 					<div class="form-group row">
 						<label for="num_produit" class="col-sm-2 col-form-label">Numéro : </label>
@@ -652,130 +727,37 @@
 					</div>
 					
 					<button type="submit" class="btn" id="valider" name="inscription">Valider</button>
-					</form>
-				</div>
+				</form>
+			</div>
 
 
 
-
-<div id="modifierP" class="admin masquer" style="display:none">
-					<h3>Modifier une promotion</h3>
-					<br/>
-					<form  action="" method="POST" onsubmit="return champ_obli()" id="formulaire">
-					
-					<div class="form-group row">
-						<label for="num_produit" class="col-sm-2 col-form-label">Numéro : </label>
-						<div class="col-sm-2 champ">
-							<input type="text" class="form-control" id="num_produit" name="Num">
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="nom" class="col-sm-2 col-form-label">Nom : </label>
-						<div class="col-sm-2 champ">
-							<input type="text" class="form-control" id="nom" name="nom">
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="marque" class="col-sm-2 col-form-label">Marque : </label>
-						<div class="col-sm-2 champ">
-							<input type="text" class="form-control" id="marque" name="marque">
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="prix" class="col-sm-2 col-form-label">Prix : </label>
-						<div class="col-sm-2 champ">
-							<input type="text" class="form-control" id="prix" name="prix">
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="sexe" class="col-sm-2 col-form-label">Sexe : </label>
-						<div class="col-sm-2 champ">
-							<input type="text" class="form-control" id="sexe" name="sexe">
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="surface" class="col-sm-2 col-form-label">Surface : </label>
-						<div class="col-sm-2 champ">
-							<input type="text" class="form-control" id="surface" name="surface">
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="couleur" class="col-sm-2 col-form-label">Couleur : </label>
-						<div class="col-sm-2 champ">
-							<input type="text" class="form-control" id="couleur" name="couleur">
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="foulees" class="col-sm-2 col-form-label">Foulées : </label>
-						<div class="col-sm-2 champ">
-							<input type="text" class="form-control" id="foulees" name="foulees">
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="photo" class="col-sm-2 col-form-label">Photos : </label>
-						<div class="col-sm-2 champ">
-							<input type="text" class="form-control" id="photo" name="photo">
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="description" class="col-sm-2 col-form-label">Description : </label>
-						<div class="col-sm-2 champ">
-							<input type="text" class="form-control" id="description" name="description">
-						</div>
-					</div>
-					
-					<button type="submit" class="btn" id="valider" name="inscription">Valider</button>
-					</form>
-				</div>
-
-
-
-<div id="cours" class="admin masquer" style="display:none">
-					<h3>Commandes en cours</h3>
-					<br/>
-					<div>
-					</div>
-</div>					
-
-
-
-
-<div id="historique" class="admin masquer" style="display:none">
-				<h3>Historique des commandes</h3>
-					<br/>
+			<div id="cours" class="admin masquer" style="display:none">
+				<h3>Commandes en cours</h3>
+				<br/>
 				<div>
 				</div>
-</div>		
+			</div>					
 
 
-<div id="liste" class="admin masquer" style="display:none">
+
+
+			<div id="historique" class="admin masquer" style="display:none">
+				<h3>Historique des commandes</h3>
+				<br/>
+				<div>
+				</div>
+			</div>		
+
+
+			<div id="liste" class="admin masquer" style="display:none">
 				<h3>Liste des inscrits</h3>
 					<br/>
 				<div>
 				</div>
-</div>		
-
-
-					
-
-
-
 			</div>	
-
-		</div>
+		</div>	
 	</div>			
-
-
-
 
 	<div id="footer">
 		<div class="container">

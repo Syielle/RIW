@@ -21,16 +21,19 @@ a{
 	text-decoration:none;
 }
 
+#retour{
+	color:black;
+	text-decoration:none;
+	text-weight:none;
+	font-variant:initial;
+}
+
 #date{
 	display:inline;
 }
 
 #titre h2{
 	color:black;
-}
-
-#formulaire{
-	
 }
 
 .form-control{

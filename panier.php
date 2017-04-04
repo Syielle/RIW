@@ -11,12 +11,14 @@ if($action !== null)
    $erreur=true;
 
    //récuperation des variables en POST ou GET
-   $l = (isset($_POST['l'])? $_POST['l']:  (isset($_GET['l'])? $_GET['l']:null )) ;
+   $mo = (isset($_POST['mo'])? $_POST['mo']:  (isset($_GET['mo'])? $_GET['mo']:null )) ;
+   $ma = (isset($_POST['ma'])? $_POST['ma']:  (isset($_GET['ma'])? $_GET['ma']:null )) ;
+   $t = (isset($_POST['t'])? $_POST['t']:  (isset($_GET['t'])? $_GET['t']:null )) ;
    $p = (isset($_POST['p'])? $_POST['p']:  (isset($_GET['p'])? $_GET['p']:null )) ;
    $q = (isset($_POST['q'])? $_POST['q']:  (isset($_GET['q'])? $_GET['q']:null )) ;
 
    //Suppression des espaces verticaux
-   $l = preg_replace('#\v#', '',$l);
+   $mo = preg_replace('#\v#', '',$mo);
    //On verifie que $p soit un float
    $p = floatval($p);
 
@@ -37,18 +39,11 @@ if($action !== null)
 if (!$erreur){
    switch($action){
       Case "ajout":
-         ajouterArticle($l,$q,$p);
+         ajouterArticle($mo,$ma,$q,$p);
          break;
 
       Case "suppression":
-         supprimerArticle($l);
-         break;
-
-      Case "refresh" :
-         for ($i = 0 ; $i < count($QteArticle) ; $i++)
-         {
-            modifierQTeArticle($_SESSION['panier']['modele'][$i],round($QteArticle[$i]));
-         }
+         supprimerArticle($mo);
          break;
 
       Default:
@@ -105,7 +100,7 @@ if (!$erreur){
 			</form>
 		  <!--Panier-->
 		  <ul class="nav navbar-nav navbar-right">
-			<li><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>  PANIER</a></li>
+			<li><a href="panier.php"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>  PANIER</a></li>
 		  </ul>
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
@@ -113,11 +108,11 @@ if (!$erreur){
 	<div class="container">
 		<img src="logo_noir.png" alt="Logo" width="100px" height="auto">
 	</div>
-	<div class="container">
-		<h1> Panier </h1>
+	<div class="container" id="blanc">
+		<h2> Panier </h2>
 			
 		<div class="row">
-				<p style="color:black"><a href="accueil.html">Accueil</a> > <a href="panier.html">Panier</a></p>
+				<p style="color:black"><a href="accueil.php">Accueil</a> > <a href="panier.php">Panier</a></p>
 			</div>
 			<div id="gris2">
 				<div class="col-md-12">
@@ -129,14 +124,13 @@ if (!$erreur){
 								<td>Marque</td>
 								<td>Taille</td>
 								<td>Prix</td>
-								<td>Quantité</td>
 								<td>Action</td>
 							</tr>
 							</thead>
 						<?php
 							if (creationPanier())
 							{
-							   $nbArticles=count($_SESSION['panier']['libelleProduit']);
+							   $nbArticles=count($_SESSION['panier']['modele']);
 							   if ($nbArticles <= 0)
 							   echo "<tr><td>Votre panier est vide </ td></tr>";
 							   else
@@ -144,10 +138,11 @@ if (!$erreur){
 							      for ($i=0 ;$i < $nbArticles ; $i++)
 							      {
 							         echo "<tr>";
-							         echo "<td>".htmlspecialchars($_SESSION['panier']['libelleProduit'][$i])."</ td>";
-							         echo "<td><input type=\"text\" size=\"4\" name=\"q[]\" value=\"".htmlspecialchars($_SESSION['panier']['qteProduit'][$i])."\"/></td>";
-							         echo "<td>".htmlspecialchars($_SESSION['panier']['prixProduit'][$i])."</td>";
-							         echo "<td><a href=\"".htmlspecialchars("panier.php?action=suppression&l=".rawurlencode($_SESSION['panier']['libelleProduit'][$i]))."\">XX</a></td>";
+							         echo "<td>".htmlspecialchars($_SESSION['panier']['modele'][$i])."</ td>";
+							         echo "<td>".htmlspecialchars($_SESSION['panier']['marque'][$i])."</ td>";
+							         echo "<td>".htmlspecialchars($_SESSION['panier']['taille'][$i])."</ td>";
+							         echo "<td>".htmlspecialchars($_SESSION['panier']['prix'][$i])."</td>";
+							         echo "<td><a href=\"".htmlspecialchars("panier.php?action=suppression&l=".rawurlencode($_SESSION['panier']['modele'][$i]))."\">XX</a></td>";
 							         echo "</tr>";
 							      }
 
@@ -164,10 +159,11 @@ if (!$erreur){
 							   }
 							}
 							?>
-				</table>
+				</table> 
 				<p style="color:black;"> Code Promo : 
 					<input type="text">
 					<button type="submit">Valider</button></p>
+				<button type="submit">Valider la commande</button>
 			</form>
 			</div>
 		</div>

@@ -22,11 +22,7 @@
 	background-position: center center;
 	width: 100%;
 	min-height: 800px;
-	/*margin-top:-20px;*/
 	margin-top:-130px;
-	
-	/*padding-top:25px;
-	padding-right:0px;*/
 	
 
 	-webkit-background-size: 100%;
@@ -40,16 +36,6 @@
     background-size: cover;
 }
 
-/*.jumbotron .container{
-	padding-left:0px;
-	padding-right:0px;
-	margin-left:0px;
-	margin-right:0px;
-}
-
-.container{
-	width:100%;
-}*/
 
 /*Barre oblique*/
 #inscrip:after{
@@ -92,6 +78,17 @@
 	
 }
 
+.marque_bouton input {
+	color: white;
+	font-family: "Bebas Neue";
+	background-color: transparent;
+	font-size: 1.5em;
+}
+
+.marque_bouton input:hover {
+	color: #0695C4;
+}
+
 
 /*--------------- div --------------------------------------------*/
 
@@ -127,7 +124,6 @@ p{
 
 #gris{
 	background-color: #cbcbcb;
-/*	height: 200px;*/
 }
 
 #blanc{
@@ -181,7 +177,6 @@ h1{
 #criteres{
 	background-color: #cbcbcb;
 	padding:10px;
-/*	height: 760px;*/
 	margin-bottom: 10px;
 }
 
@@ -191,15 +186,12 @@ h1{
 
 #chaussures{
 	background-color: #cbcbcb;
-/*	height: 760px;*/
 	margin-bottom: 50px;
-/*	overflow:scroll;*/
 }
 
 @media screen and (max-width: 1200px){
 	#chaussures{
 	background-color: #cbcbcb;
-/*	height: 800px;*/
 	margin-bottom: 50px;
 }
 }
@@ -212,18 +204,6 @@ h1{
 	display: none;
 }
 
-/*a:hover span{
-	display: inline-block;
-	position: absolute;
-	white-space: nowrap;
-
-	background-color: white;
-	color:black;
-	padding:3px;
-	border:1px solid black;
-	border-radius: 5px;
-}*/
-
 #chaussures div{
 	display: inline-block;
 	/*height: 100px;*/
@@ -231,6 +211,7 @@ h1{
 
 #chaussures p{
 	width: 100px;
+	text-align:justify;
 }
 
 figure{
@@ -257,6 +238,20 @@ figcaption{
 	color: black;
 }
 
+#selection_chaussure{
+	background-color:#eeeeee;
+}
+
+#description{
+	text-align:justify;
+	width:90%;
+}
+
+#panier{
+	display:block;
+	margin-top:10px;
+}
+
 
 @media screen and (max-width: 700px){
 	#produit img{
@@ -269,9 +264,9 @@ figcaption{
 
 #connexion{
 	background-color: #cbcbcb;
-	height: 200px;
 
 	margin-bottom: 50px;
+	padding-bottom: 10px;
 	padding-left: 20px;
 }
 
@@ -292,7 +287,6 @@ input[type="range"] {
 
 #profil{
 	background-color: #cbcbcb;
-/*	height: 300px;*/
 	margin-bottom: 50px;
 	padding: 20px; 
 }
@@ -307,7 +301,9 @@ input[type="range"] {
 
 
 
-
+#grisnews div{
+	text-align: center;
+}
 
 
 
@@ -331,13 +327,13 @@ input[type="range"] {
 
 .admin {
 	background-color: #cbcbcb;
-/*	height: 650px;*/
 	padding:20px;
 }
 
 #boutons{
 	background-color: #cbcbcb;
-/*	height: 650px;*/
 	padding:20px;
 }
+
+
 

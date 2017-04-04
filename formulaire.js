@@ -12,6 +12,7 @@ function champ_obli(){
 	var adresse=document.getElementById('Adresse').value;
 	var tab=new Array(email,mot_de_passe,prenom,nom,sexe,date_naissance,telephone,pays,code_postal,ville,adresse);
 }
+
 function verification_email(){
 	var val_email= document.getElementById('Email').value;
 	var email=document.getElementById('Email');
@@ -109,7 +110,6 @@ function verification_codepostal(){
 	}
 }
 
-/*Voir si on le fait en ajax*/
 function verification_ville(){
 	var val_ville = document.getElementById('Ville').value;
 	var ville=document.getElementById('Ville');

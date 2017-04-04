@@ -22,7 +22,6 @@
 			$jour=$_POST["Jour"];
 			$mois=$_POST["Mois"];
 			$annee=$_POST["Annee"];
-			$pays=$_POST["Pays"];
 			$cp=$_POST["Code_Postal"];
 			$ville=$_POST["Ville"];
 			$adresse=$_POST["Adresse"];
@@ -30,7 +29,7 @@
 			$tel=$_POST["Telephone"];
 			$date=$annee."-".$mois."-".$jour;
 			//Vérifier les champs obligatoires
-			$tab_obli=array($civilite,$nom,$prenom,$mdp,$verif,$email,$date,$pays,$cp,$ville,$adresse,$comp_ad,$tel);
+			$tab_obli=array($civilite,$nom,$prenom,$mdp,$verif,$email,$date,$cp,$ville,$adresse,$comp_ad,$tel);
 			
 			foreach($tab_obli as $obli){
 				if(!isset($obli)&& empty($obli)){
@@ -38,20 +37,17 @@
 				}
 			}
 			
-			function membre($civilite,$nom,$prenom,$mdp,$verif,$email,$date,$pays,$cp,$ville,$adresse,$comp_ad,$tel){
+			function membre($civilite,$nom,$prenom,$mdp,$verif,$email,$date,$cp,$ville,$adresse,$comp_ad,$tel){
 				PDOConnexion::setParameters("wild","phpsrc","tpphp");
 				$db=PDOConnexion::getInstance();
-				$sql="INSERT INTO membre VALUES (3,:civilite, :nom, :prenom, :mdp, :email, :date, :pays, :cp, :ville, :adresse, :comp_ad, :tel, 0)";
+				$sql="INSERT INTO membre(civilite, nom, prenom, mdp, email, date_naissance, cp, ville, adresse, cp_adresse, telephone, admin) VALUES (:civilite, :nom, :prenom, :mdp, :email, :date, :cp, :ville, :adresse, :comp_ad, :tel, 0)";
 				$sth=$db->prepare($sql);
 				$sth->setFetchMode(PDO::FETCH_ASSOC);
-				$sth->execute(array(":civilite"=>$civilite,":nom"=>$nom,":prenom"=>$prenom,":mdp"=>$mdp,":email"=>$email,":date"=>$date,":pays"=>$pays,":cp"=>$cp, ":ville"=>$ville, ":adresse"=>$adresse, ":comp_ad"=>$comp_ad, ":tel"=>$tel));
+				$sth->execute(array(":civilite"=>$civilite,":nom"=>$nom,":prenom"=>$prenom,":mdp"=>$mdp,":email"=>$email,":date"=>$date,":cp"=>$cp, ":ville"=>$ville, ":adresse"=>$adresse, ":comp_ad"=>$comp_ad, ":tel"=>$tel));
 				
 			}
 			
-			membre($civilite,$nom,$prenom,$mdp,$verif,$email,$date,$pays,$cp,$ville,$adresse,$comp_ad,$tel);
-			
-			
-			
+			membre($civilite,$nom,$prenom,$mdp,$verif,$email,$date,$cp,$ville,$adresse,$comp_ad,$tel);			
 		}
 	?>
 	<!-- Navbar grise-->
@@ -81,7 +77,9 @@
 			</form>
 		  <!--Panier-->
 		  <ul class="nav navbar-nav navbar-right">
-			<li><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>  PANIER</a></li>
+			<li>
+				<a href="panier.php"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>  PANIER</a>
+			</li>
 		  </ul>
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
@@ -95,9 +93,9 @@
 					<div class="navbar navbar-logo">
 						<!-- Logo -->
 						<ul class="nav navbar-nav">
-							<a href="accueil.html"><img src="logo_noir.png" alt="Logo" width="100px" height="auto"></a>
+							<a href="accueil.php"><img src="logo_noir.png" alt="Logo" width="100px" height="auto"></a>
 						</ul>
-						<p><a href="accueil.html">Accueil</a> > Inscription</p>
+						<p><a href="accueil.php" id="retour">Retour</a> > Inscription</p>
 					</div>
 					<div id="titre">
 						<h1>Inscription</h1>
@@ -188,42 +186,6 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="Pays" class="col-sm-1 col-form-label">Pays:</label>
-			<div class="col-sm-2 champ">
-				<select class="form-control" name="Pays">
-					<option value="France" selected="France">France</option>
-					<option value="Allemagne">Allemagne</option>
-					<option value="Autriche">Autriche</option>
-					<option value="Belgique">Belgique</option>
-					<option value="Bulgarie">Bulgarie</option>
-					<option value="Chypre">Chypre</option>
-					<option value="Croatie">Croatie</option>
-					<option value="Danemark">Danemark</option>
-					<option value="Espagne">Espagne</option>
-					<option value="Estonie">Estonie</option>
-					<option value="Finlande">Finlande</option>
-					<option value="France">France</option>
-					<option value="Grèce">Grèce</option>
-					<option value="Hongrie">Hongrie</option>
-					<option value="Irlande">Irlande</option>
-					<option value="Italie">Italie</option>
-					<option value="Lettonie">Lettonie</option>
-					<option value="Lituanie">Lituanie</option>
-					<option value="Luxembourg">Luxembourg</option>
-					<option value="Malte">Malte</option>
-					<option value="Pays-Bas">Pays-Bas</option>
-					<option value="Pologne">Pologne</option>
-					<option value="Portugal">Portugal</option>
-					<option value="République_tchèque">République tchèque</option>
-					<option value="Roumanie">Roumanie</option>
-					<option value="Royaume-Uni">Royaume-Uni</option>
-					<option value="Slovaquie">Slovaquie</option>
-					<option value="Slovénie">Slovénie</option>
-					<option value="Suède">Suède</option>
-				</select>
-			</div>
-		</div>
-		<div class="form-group row">
 			<label for="Code_Postal" class="col-sm-1 col-form-label">Code Postal:</label>
 			<div class="col-sm-2 champ">
 				<input type="text" class="form-control" id="Code_Postal" name="Code_Postal" onkeyup="recherche()" onchange="verification_codepostal()" value="<?php if(isset($_POST['Code_Postal']) || !empty($_POST['Code_Postal'])) echo $_POST['Code_Postal']?>">
@@ -258,7 +220,6 @@
   </body>
   <script src="jquery/dist/jquery.min.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
-  <!--Code Postal-->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
   
@@ -282,12 +243,8 @@
 					alert("Tous les champs du formulaire n'ont pas été remplis");
 					return false;
 				}
-				/*else if(error!=null || error!=""){
-					alert("Un ou plusieurs champs sont mal renseignés");
-					return false;
-				}*/
 			}
-		
+			alert("Inscription validée");
 		return true;
 	}
 	function verification_email(){
@@ -308,11 +265,15 @@
 	function verification_motdepasse(){
 		var val_mdp=document.getElementById('Mot_de_passe').value;
 		var mdp=document.getElementById('Mot_de_passe');
-		if(val_mdp.length>=8){
-			valid(mdp);
+		var regex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*\W).{8,}$/;
+		if(val_mdp==""){
+			error(mdp);
+		}
+		else if(!regex.test(val_mdp)){
+			error(mdp);
 		}
 		else{
-			error(mdp);
+			valid(mdp);
 		}
 	}
 	
@@ -398,7 +359,6 @@
 		}
 	}
 
-	/*Voir si on le fait en ajax*/
 	function verification_ville(){
 		var val_ville = document.getElementById('Ville').value;
 		var ville=document.getElementById('Ville');
@@ -413,54 +373,6 @@
 			valid(ville);
 		}
 	}
-	
-	var marker=null;
-	function recherche(){			
-		$("#Code_Postal").autocomplete({
-			source: function(request, response){	
-				//On arrive ici dès qu'une touche est tapée dans #codepostal	
-
-				//récupère la valeur du code postal
-				var cp=$('#Code_Postal').val();
-				//vérification des 5 chiffres
-				if(!((cp/10000)>=1)){ //code postal erroné
-					if(marker!=null)marker.setMap(null);
-					//zone de texte
-					$('#Ville').val("");
-					response();
-				}
-				else{
-					$.getJSON(
-						//interrogation du webservice geonames
-						"http://api.geonames.org/postalCodeLookupJSON",
-						{
-							postalcode:cp,
-							country:"FR",
-							username:"iutmmistlo"
-						},
-						function(data){
-							var res=new Array();
-							var i=0;
-							//parcourt les données récupérées postalcodes
-							for(i=0;i<data.postalcodes.length;i++){
-								var place=data.postalcodes[i].placeName;
-								var code=data.postalcodes[i].postalCode;
-							res[res.length]={"value":code,"label":place};
-							}
-							response(res);
-						}
-					);
-				}
-			},
-			//création du select avec les villes qui corresondent au code postal
-			select : function(event, ui){
-				event.preventDefault();
-				$(this).val(ui.item.value);
-				$('#Ville').val(item.value);
-				/*afficheInfo($(this).val(),ui.item.label);		*/						
-			}
-		});
-	};
 	
 	function valid(element){
 		element.setAttribute("class","form-control form-control-success");
